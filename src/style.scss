@@ -1,0 +1,1148 @@
+
+$small: 320px;
+$large: 1224px;
+$green: #27AE61;
+$text-color: #1A1A1A;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $small + 1) and (max-width: $large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $large) { @content; }
+  }
+}
+
+@mixin font-mon($size: 18px, $colour: #1A1A1A, $weight: 500,  $lh: 24px) {
+  font-family: 'Montserrat', sans-serif;
+  @if $size { font-size: $size; }
+  @if $colour { color: $colour; }
+  @if $weight { font-weight: $weight; }
+  @if $lh { line-height: $lh; }
+}
+
+@mixin font-nun($size: 48px, $colour: #111111, $weight: 800,  $lh: 65px) {
+  font-family: 'Nunito Sans', sans-serif;
+  @if $size { font-size: $size; }
+  @if $colour { color: $colour; }
+  @if $weight { font-weight: $weight; }
+  @if $lh { line-height: $lh; }
+}
+@mixin btn($height, $width){
+  border-radius: 3rem;
+  background-color: $green;
+  border:none;
+  @if $height{height: $height;}
+  @if $width { width: $width; }
+}
+
+*{
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.container{
+  height: 100vh;
+  display: table;
+  width: auto;
+  padding: 0;
+  @include respond-to(medium-screens) {
+    height: auto;
+  }
+}
+.container--gray{
+  background-color: #F1F1F1;
+  @extend .container;
+}
+
+.heading{
+  text-align: center;
+  margin: 3rem auto;
+  @include font-nun();
+  @include respond-to(handhelds) {
+    @include font-nun(34px, $text-color, 800, 36px);
+  }
+  @include respond-to(medium-screens) {
+    @include font-nun(42px, $text-color, 800, 50px);
+    margin: 4rem auto;
+  }
+}
+
+/*SECTION HERO*/
+
+.hero{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
+  background-color: #1A1A1A;
+  @include respond-to(medium-screens) {
+    background: #1A1A1A url("../images/b-g-transp.png") no-repeat center;
+    background-size: cover;
+    height: 80vh;
+  }
+  @include respond-to(wide-screens) {
+    background: #1A1A1A url("../images/b-g-transp.png") no-repeat center;
+    background-size: cover;
+  }
+  .hero__nav-wrap{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    height: 15vh;
+    width: 80%;
+    margin: 1rem auto;
+    .logo{
+      .logo__icon{
+        padding-right: 1rem;
+        height: 36px;
+        width: 44px;
+      }
+      .logo__text{
+        text-transform: uppercase;
+        @include font-nun(24px,white,700,32px);
+        @include respond-to(handhelds){
+          display: none;
+        }
+      }
+    }
+    .menu{
+      .menu__icon{
+        @include respond-to(wide-screens) {
+          display: none;
+        }
+      }
+      .menu__list{
+        display: flex;
+        justify-content: space-around;
+        list-style: none;
+        @include respond-to(handhelds) {
+          display: none;
+        }
+        @include respond-to(medium-screens) {
+          display: none;
+        }
+        .menu__item{
+          text-decoration: none;
+          margin-left: 3rem;
+          @include font-nun(18px,white,700,24px);
+        }
+      }
+    }
+  }
+  .hero__text{
+    text-align: center;
+    .hero__text__title{
+      @include font-nun(72px,white,700,72px);
+      @include respond-to(handhelds) {
+        @include font-nun(36px,white,700,36px);
+
+      }
+      @include respond-to(medium-screens) {
+        @include font-nun(42px,white,700,42px);
+      }
+    }
+    .hero__text__paragraph{
+      @include font-nun(24px,white,700,32px);
+      margin: 3rem 1rem;
+      @include respond-to(handhelds) {
+        @include font-nun(14px,white,700,18px);
+
+      }
+      @include respond-to(medium-screens) {
+        @include font-nun(18px,white,700,22px);
+      }
+    }
+    .hero__btn {
+      margin-top: 2.5rem;
+      @include btn(56px, 195px);
+      @include font-mon(24px, white, 500, 32px);
+      @include respond-to(handhelds) {
+        @include btn(43px, 127px);
+        @include font-nun(18px, white, 500, 18px);
+      }
+      @include respond-to(medium-screens) {
+        @include btn(46px, 135px);
+        @include font-nun(18px, white, 700, 22px);
+      }
+    }
+  }
+  .hero__circles{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    .circle-item{
+      float: left;
+      height: 20px;
+      width: 20px;
+      border: 1px solid #ffffff;
+      border-radius: 50%;
+      margin-left: 1rem;
+      @include respond-to(handhelds) {
+        width: 15px;
+        height: 15px;
+
+      }
+      @include respond-to(medium-screens) {
+        width: 18px;
+        height: 18px;
+      }
+    }
+    .circle__item--active{
+      background-color: #27AD60;
+    }
+  }
+}
+
+/*END of SECTION HERO*/
+/*SECTION EDUCATION*/
+
+.education{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-top:4rem;
+  padding: 0;
+  @include respond-to(wide-screens) {
+    margin: 6rem 0 0.5rem 10rem;
+  }
+  .education__item {
+    flex: 0 1 50%;
+    margin: 0 auto;
+    @include respond-to(handhelds) {
+    flex: 0 1 90%;
+    margin: 0 auto;
+    }
+    .education__img {
+      max-width: 100%;
+      margin: 0;
+     @include respond-to(medium-screens) {
+        min-width: 290px;
+     }
+    }
+    .education__description {
+      margin: 0 2em;
+      @include respond-to(handhelds) {
+        margin: 1em 0;
+        width: auto;
+      }
+      @include respond-to(medium-screens) {
+        width:auto;
+
+      }
+      .education__heading {
+        margin: 0 0;
+        @include font-nun(36px, $text-color, 700, 48px);
+        @include respond-to(handhelds) {
+          @include font-nun(30px, $text-color, 700, 36px);
+        }
+        @include respond-to(medium-screens) {
+          @include font-nun(32px, $text-color, 700, 38px);
+        }
+      }
+      .education__paragraph {
+        margin: 4rem 0;
+        @include font-mon();
+        @include respond-to(handhelds) {
+          margin: 1rem 0;
+          @include font-mon(14px, $text-color, 500, 18px);
+        }
+        @include respond-to(medium-screens) {
+          margin: 1rem 0;
+          @include font-mon(16px, $text-color, 500, 20px)
+        }
+      }
+      .points {
+        margin: 1rem 1rem 2rem 0;
+        @include respond-to(handhelds) {
+          margin: 2rem 0 0 0;
+        }
+        @include respond-to(medium-screens) {
+          margin: 1rem 1rem 1rem 0;
+        }
+        .points__img {
+          display: inline-block;
+          height: 46px;
+          width: 42px;
+        }
+        .points__sprite-blank{
+          background: url("../images/spritesheet.png") -5px 0;
+        }
+        .points__sprite-man{
+          background: url("../images/spritesheet.png") -5px -54px;
+        }
+        .points__sprite-message{
+          background: url("../images/spritesheet.png") -5px -98px;;
+        }
+
+        .points__name {
+          @include font-nun(30px, $text-color, 700, 42px);
+          @include respond-to(handhelds) {
+            @include font-nun(18px, $text-color, 700, 24px);
+          }
+          @include respond-to(medium-screens) {
+            @include font-nun(22px, $text-color, 700, 26px);
+          }
+        }
+
+      }
+    }
+  }
+  }
+
+/*END of SECTION EDUCATION*/
+
+/*SECTION FEATURE*/
+
+.feature__box{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  list-style: none;
+  margin: 2rem 18rem;
+  padding: 0;
+  @include respond-to(medium-screens) {
+    margin: 1rem auto;
+    justify-content: center;
+  }
+  @include respond-to(handhelds) {
+    margin: 0 auto;
+  }
+
+  .feature__item {
+    text-align: center;
+    flex: 0 1 30%;
+    margin: 1rem 2rem 0 0;
+    @include respond-to(handhelds) {
+      flex: 1 0 100%;
+      margin: 0 auto;
+    }
+    .feature__img-wrap {
+      width: 170px;
+      margin: 0 auto;
+      .feature__img-bg {
+        background-color: #ffffff;
+        border-radius: 50%;
+        text-align: center;
+        height: 170px;
+        width: 170px;
+        margin: 0 auto;
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+    .feature__sub-heading {
+      margin: 2rem;
+      @include font-nun(30px, $text-color, 700, 36px);
+      @include respond-to(handhelds) {
+        @include font-nun(24px, $text-color, 700, 32px);
+      }
+      @include respond-to(medium-screens) {
+        @include font-nun(27px, $text-color, 700, 34px);
+      }
+    }
+    .feature__paragraph {
+      text-align: center;
+      margin-bottom: 5rem;
+      @include font-mon(18px, $text-color, 500, 24px);
+      @include respond-to(handhelds) {
+        @include font-mon(14px, $text-color, 500, 18px);
+      }
+      @include respond-to(medium-screens) {
+        @include font-mon(16px, $text-color, 500, 20px);
+      }
+    }
+  }
+}
+
+/*END of SECTION FEATURE*/
+
+/*SECTION COURSES*/
+
+
+.courses {
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:space-between;
+  padding: 0;
+  @include respond-to(wide-screens){
+    margin: 2rem 10rem;
+  }
+  @include respond-to(handhelds) {
+    margin: 0 1rem;
+    justify-content:center;
+  }
+  @include respond-to(medium-screens) {
+    margin: 0 4rem;
+  }
+  .courses__item{
+    flex: 0 1 30%;
+    background-color: #F1F1F1;
+    text-align: center;
+    margin: 1rem auto;
+    @include respond-to(handhelds) {
+      flex: 0 1 100%;
+      height: 589px;
+    }
+    @include respond-to(medium-screens) {
+      min-width: 279px ;
+
+    }
+    @include respond-to(wide-screens){
+      }
+    .courses__image{
+      width:100%;
+      max-width: 100%;
+      @include respond-to(handhelds) {
+
+      }
+      @include respond-to(medium-screens) {
+
+      }
+    }
+    .courses__description{
+      .courses__sub-heading{
+        margin: 2rem;
+        text-align: left;
+        @include font-nun(30px,$text-color, 700, 36px);
+        @include respond-to(handhelds) {
+          @include font-nun(24px,$text-color, 700, 32px);
+        }
+        @include respond-to(medium-screens) {
+          @include font-nun(27px,$text-color, 700, 34px);
+        }
+      }
+      .courses__text{
+        margin: 2rem;
+        text-align: left;
+        @include font-mon(18px, $text-color, 500, 24px);
+        @include respond-to(handhelds) {
+          @include font-mon(14px, $text-color, 500, 18px)
+        }
+        @include respond-to(medium-screens) {
+          @include font-mon(16px, $text-color, 500, 20px)
+        }
+      }
+      .courses__time-teacher{
+        text-align: center;
+        border-bottom: 2px solid #CFCFCF;
+        display: table;
+        margin: 3rem auto;
+        padding-bottom: 12px;
+        @include font-nun(24px,$text-color, 700, 32px);
+        @include respond-to(handhelds) {
+          @include font-nun(18px,$text-color, 700, 24px);
+        }
+        @include respond-to(medium-screens) {
+          @include font-nun(20px,$text-color, 700, 28px);
+        }
+      }
+      .courses__join-now{
+        display: block;
+        margin: 0 auto;
+        @include btn(5rem,20rem);
+        @include font-nun(24px,white, 700, 32px);
+        @include respond-to(handhelds){
+          @include btn(4rem,15rem);
+          @include font-nun(18px,white, 700, 24px);
+        }
+        @include respond-to(medium-screens){
+          @include btn(45px,235px);
+          @include font-nun(20px,white, 700, 28px);
+        }
+      }
+    }
+  }
+  .courses__item--disables{
+    @include respond-to(handhelds){
+      display: none;
+    }
+  }
+}
+.view{
+  text-align: center;
+  margin-top: 2em;
+  @include font-nun(24px, $text-color, 700, 32px);
+  @include respond-to(handhelds) {
+   display: none;
+  }
+  @include respond-to(medium-screens) {
+    @include font-nun(20px, $text-color, 700, 30px);
+  }
+}
+.view a{
+  text-decoration: none;
+  color: #646464;
+}
+.courses__circles{
+  display: flex;
+  justify-content: center;
+  margin: 109px auto 20px auto;
+  .courses__circle-item{
+    float: left;
+    height: 15px;
+    width: 15px;
+    border: 1px solid #1B1B1B;
+    border-radius: 50%;
+    margin-left: 1rem;
+    @include respond-to(wide-screens) {
+      display: none;
+    }
+    @include respond-to(medium-screens) {
+      display: none;
+    }
+  }
+  .circle__item--active{
+    background-color: #27AD60;
+  }
+}
+
+
+/*END of SECTION COURSES*/
+
+
+/*SECTION OUR TEACHERS*/
+.container__teachers{
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+  @include respond-to(handhelds) {
+    height: auto;
+    width: 100vw;
+  }
+}
+.teacher {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0 auto;
+  min-width: 155px;
+  padding: 0;
+  @include respond-to(wide-screens) {
+    margin: 0 10rem;
+  }
+  @include respond-to(medium-screens) {
+    margin: 0 auto;
+
+  }
+  @include respond-to(handhelds) {
+    flex-flow: column wrap;
+    margin: 0 auto;
+  }
+  .teacher__info {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    flex: 0 1 31%;
+    margin: 0 auto;
+    @include respond-to(wide-screens) {
+      margin-top: 5rem;
+    }
+    @include respond-to(medium-screens) {
+      margin-top: 5rem;
+    }
+    @include respond-to(handhelds) {
+      flex: 0 1 100%;
+      flex-flow: column wrap;
+      justify-content: center;
+      width: auto;
+    }
+    .teacher__photo {
+      float: left;
+      margin-right: 1rem;
+      @include respond-to(handhelds) {
+        float: none;
+        margin: 0 auto;
+      }
+
+    }
+    .teacher__name-position {
+      @include respond-to(handhelds) {
+        text-align: center;
+        margin-top: 3rem;
+      }
+      .teacher__name {
+        @include font-nun(30px, $text-color, 700, 38px);
+        @include respond-to(handhelds) {
+          @include font-nun(24px, $text-color, 700, 32px);
+        }
+        @include respond-to(medium-screens) {
+          @include font-nun(26px, $text-color, 700, 36px);
+        }
+      }
+      .teacher__position {
+        @include font-nun(24px, $green, 700, 30px);
+        @include respond-to(handhelds) {
+          @include font-nun(18px, $green, 700, 24px);
+        }
+        @include respond-to(medium-screens) {
+          min-width: 150px;
+          @include font-nun(22px, $green, 700, 26px);
+        }
+      }
+    }
+
+  }
+  .teacher--inactive {
+    @include respond-to(handhelds) {
+      display: none;
+    }
+  }
+}
+.teacher__circles{
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+  .teacher__circle-item {
+    height: 9px;
+    width: 9px;
+    border: 1px solid #1B1B1B;
+    border-radius: 50%;
+    margin-right: 1rem;
+    @include respond-to(wide-screens) {
+      display: none;
+    }
+    @include respond-to(medium-screens) {
+      display: none;
+    }
+  }
+  .teacher__item--active {
+    background-color: #4E4E4E;
+  }
+}
+
+
+/*END of SECTION OUR TEACHERS*/
+
+/* SECTION PROGRAMS*/
+.program{
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  padding: 0;
+  margin: 0 auto;
+  @include respond-to(wide-screens){
+    margin: 0 10rem;
+  }
+  .program__item{
+    flex:0 1 28%;
+    margin: 0 auto 1rem auto;
+    max-height: 280px;
+    min-width: 280px;
+    .program__description{
+      margin: 27% 5%;
+      text-align: center;
+    }
+    .program__name{
+      @include font-nun(30px, #ffffff, 700, 36px);
+      @include respond-to(handhelds) {
+        @include font-nun(24px, #ffffff, 700, 32px);
+      }
+      @include respond-to(medium-screens) {
+        @include font-nun(26px, #ffffff, 700, 34px);
+      }
+    }
+    .program__text{
+      @include font-mon(18px, #ffffff, 500, 24px);
+      margin-top: 2rem;
+      @include respond-to(handhelds) {
+        @include font-mon(14px, #ffffff, 500, 18px);
+      }
+      @include respond-to(medium-screens) {
+        @include font-mon(16px, #ffffff, 500, 20px);
+      }
+    }
+  }
+  .program__item:after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  .program__pre-col{
+    background:#27AE60 url("../images/pre-college.png") no-repeat center;
+  }
+  .program__middle{
+    background:#27AE60 url("../images/back.png") no-repeat center;
+  }
+  .program__high{
+    background:#27AE60 url("../images/friends.png") no-repeat center;
+  }
+  .program__exchange{
+    background:#27AE60 url("../images/plane.png") no-repeat center;
+  }
+  .program__graduate{
+    background:#27AE60 url("../images/graduate.png") no-repeat center;
+  }
+  .program__home{
+    background:#27AE60 url("../images/books.png") no-repeat center;
+  }
+}
+
+/*END of SECTION PROGRAMS*/
+
+/*SECTION CLIENT*/
+
+.comment {
+  padding: 0;
+  .comment__client-photo {
+    text-align: center;
+    .comment__client {
+      @include respond-to(medium-screens) {
+        background-color: #646464;
+        border-radius: 50%;
+        margin: 0 20px 0 0;
+      }
+      @include respond-to(wide-screens) {
+        margin: 0 40px 0 0;
+      }
+    }
+    .comment__client-1 {
+      display: none;
+      @include respond-to(medium-screens) {
+        display: inline-block;
+      }
+      @include respond-to(wide-screens) {
+        display: inline-block;
+      }
+    }
+    .comment__client-2 {
+      display: none;
+      @include respond-to(medium-screens) {
+        display: inline-block;
+      }
+      @include respond-to(wide-screens) {
+        display: inline-block;
+      }
+    }
+    .comment__client-3 {
+      @include respond-to(medium-screens) {
+        display: inline-block;
+      }
+      @include respond-to(wide-screens) {
+        display: inline-block;
+      }
+    }
+    .comment__client-4 {
+      display: none;
+      @include respond-to(medium-screens) {
+        display: inline-block;
+      }
+      @include respond-to(wide-screens) {
+        display: inline-block;
+      }
+      }
+
+    }
+    .comment__client-5 {
+      display: none;
+      @include respond-to(medium-screens) {
+        display: inline-block;
+      }
+      @include respond-to(wide-screens) {
+        display: inline-block;
+    }
+  }
+  .comment__text {
+    margin: 3em auto;
+    text-align: center;
+    @include font-mon(14px, $text-color, 500, 18px);
+    @include respond-to(medium-screens) {
+      margin: 10% 20%;
+      @include font-mon(16px, $text-color, 500, 20px);
+    }
+    @include  respond-to(wide-screens){
+      margin: 10% 25%;
+      @include font-mon(18px, $text-color, 500, 24px);
+    }
+  }
+    .comment__organization {
+    display: none;
+    @include respond-to(medium-screens) {
+      text-align: center;
+      display: block;
+    }
+    @include  respond-to(wide-screens){
+      text-align: center;
+      display: block;
+    }
+  }
+  .comment__name {
+    @include font-nun(30px, $text-color, 700,36px);
+  }
+  .comment__job-title {
+    @include font-nun(24px, $text-color, 700,32px);
+  }
+  .comment__circles {
+    display: flex;
+    justify-content: center;
+    margin: 2em auto;
+    .comment__circle-item {
+      height: 9px;
+      width: 9px;
+      border: 1px solid #1B1B1B;
+      border-radius: 50%;
+      margin-right: 1rem;
+      @include respond-to(wide-screens) {
+        display: none;
+      }
+      @include respond-to(medium-screens) {
+        display: none;
+      }
+    }
+    .comment__item--active {
+      background-color: $green;
+    }
+  }
+}
+
+/*END of SECTION CLIENT*/
+
+
+/*SECTION BLOG*/
+
+.blog {
+  padding: 0;
+  margin: 0 auto;
+  @include respond-to(medium-screens) {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    width: 95%;
+  }
+  @include respond-to(wide-screens) {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    width: 83%;
+  }
+  .blog__item {
+    display: none;
+    text-align: center;
+    @include respond-to(medium-screens) {
+      display: block;
+      flex: 0 1 23%;
+    }
+    @include respond-to(wide-screens) {
+      display: block;
+      flex: 0 1 23%;
+    }
+    .blog__image {
+      width:90%;
+    }
+    .blog__sub-heading {
+      @include font-nun(24px, $text-color, 700, 32px);
+      margin: 1em;
+    }
+    .blog__text {
+      @include font-mon(14px, $text-color, 500, 18px);
+      margin-bottom: 1em;
+      @include respond-to(medium-screens) {
+        @include font-mon(16px, $text-color, 500, 20px);
+      }
+      @include respond-to(wide-screens) {
+        @include font-mon(18px, $text-color, 500, 24px);
+      }
+    }
+  }
+
+  .blog__item--active {
+    display: block;
+  }
+}
+.blog__button{
+  display: block;
+  margin: 3em auto;
+  @include btn(47px, 154px);
+  @include font-mon(14px, white, 500, 0);
+  @include respond-to(medium-screens) {
+    @include btn(58px, 170px);
+    @include font-mon(18px, white, 600, 26px);
+  }
+  @include respond-to(wide-screens) {
+    @include btn(70px, 205px);
+    @include font-mon(22px, white, 600, 32px);
+  }
+}
+
+/*END of SECTION BLOG*/
+
+/*SECTION NEWSLETTER*/
+.container--dark-gray {
+  display: table;
+  width: 100%;
+  background: #1A1A1A url("../images/foot-b-g.png") center no-repeat;
+  background-size: cover;
+  @include respond-to(medium-screens) {
+    margin:0 auto;
+    background: #95989A;
+    height: 200px;
+  }
+  @include respond-to(wide-screens) {
+    background: #95989A;
+    height: 200px;
+  }
+
+  .newsletter {
+    padding: 0;
+    text-align: center;
+    margin: 3em 1em;
+    @include respond-to(medium-screens) {
+      margin:0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    @include respond-to(wide-screens) {
+      display: flex;
+      flex-direction: row;
+      margin-left: 8rem;
+    }
+    .newsletter__item{
+      flex: 0 1 30%;
+      @include respond-to(medium-screens) {
+        margin-top: 2em;
+      }
+    }
+    .newsletter__text {
+      @include font-nun(30px, white, 700, 36px);
+      @include respond-to(medium-screens) {
+        @include font-nun(34px, white, 700, 38px);
+      }
+      @include respond-to(wide-screens) {
+        @include font-nun(36px, white, 800, 40px);
+
+      }
+    }
+    .newsletter__email {
+      padding: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      border-bottom: 2px solid #95989A;
+      width: 275px;
+      margin-top: 65%;
+      @include respond-to(medium-screens) {
+        margin: 2em auto;
+        border-bottom: 2px solid #ffffff;
+      }
+      @include respond-to(wide-screens) {
+        margin: 0 auto;
+        border-bottom: 2px solid #ffffff;
+        max-width: 275px;
+      }
+    }
+    .newsletter__button {
+      padding: 0;
+      display: block;
+      margin: 20px auto;
+      @include btn(47px, 154px);
+      @include font-mon(14px, white, 500, 0);
+      @include respond-to(medium-screens) {
+        margin: 0 auto 1em auto;
+        @include btn(58px, 170px);
+        @include font-mon(18px, white, 600, 26px);
+      }
+      @include respond-to(wide-screens) {
+        margin: 0 auto;
+        @include btn(70px, 205px);
+        @include font-mon(22px, white, 600, 32px);
+      }
+    }
+  }
+}
+
+/*END of SECTION NEWSLETTER*/
+
+/*SECTION CONTACT*/
+
+.contact {
+  padding: 0;
+  display: flex;
+  flex-flow: column-reverse wrap;
+  align-items: center;
+  margin: 2em auto;
+  @include respond-to(medium-screens) {
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 0 4rem;
+  }
+  @include respond-to(wide-screens) {
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 0 10rem;
+  }
+  .contact__item {
+    flex: 0 1 95%;
+    @include font-nun(18px, $text-color, 700, 24px);
+    @include respond-to(medium-screens) {
+      flex: 0 1 45%;
+    }
+    @include respond-to(wide-screens) {
+      flex: 0 1 45%;
+    }
+    .contact__input {
+      border: 0;
+      outline: 0;
+      background: transparent;
+      border-bottom: 1px solid #95989A;
+      width: 240px;
+      margin: 1em 2em;
+      @include respond-to(medium-screens) {
+        width: 100%;
+        max-width: 570px;
+      }
+      @include respond-to(wide-screens) {
+        width: 100%;
+        max-width: 570px;
+      }
+    }
+    .contact_textarea {
+      height: 115px;
+      width: 240px;
+      margin: 1em 2em;
+      @include font-nun(18px, $text-color, 700, 24px);
+      @include respond-to(medium-screens) {
+        width: 100%;
+        height: auto;
+      }
+      @include respond-to(wide-screens) {
+        width: 100%;
+        height: 240px;
+        max-width: 570px;
+      }
+    }
+    .contact_button {
+      display: block;
+      margin: 0 auto;
+      @include font-mon(18px, $text-color, 500, 24px);
+      @include btn(47px, 134px);
+    }
+
+    .contact__map {
+      margin: 0 1em;
+      display: block;
+      .contact__map__image {
+        width: 100%;
+        @include respond-to(medium-screens) {
+          width: 100%;
+        }
+        @include respond-to(wide-screens) {
+          width: 100%;
+          max-width: 570px;
+        }
+      }
+    }
+    .contact__info {
+      @include respond-to(handhelds) {
+        margin: 3em 2em;
+        display: block;
+      }
+      @include respond-to(medium-screens) {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        margin: 0 0;
+      }
+      @include respond-to(wide-screens) {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        margin: 0 0;
+      }
+      .contact__info__item {
+        margin-bottom: 2em;
+        @include respond-to(medium-screens) {
+          flex: 0 1 32%;
+        }
+        @include respond-to(wide-screens) {
+          flex: 0 1 32%;
+          .contact__info__image {
+            margin-bottom: 1em;
+
+          }
+          .contact__info__text {
+            @include font-mon(15px, $text-color, 500, 18px)
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*END of SECTION CONTACT*/
+
+/*SECTION FOOTER*/
+.footer{
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column wrap;
+  background: #1A1A1A;
+  @include respond-to(wide-screens){
+    flex-flow: row wrap;
+  }
+  .footer__logo {
+    margin: 2em auto;
+    @include respond-to(wide-screens){
+      margin: 2em;
+    }
+    .footer__logo__icon {
+      height: 32px;
+      width: 40px;
+      padding-right: 1rem;
+    }
+    .footer__logo__text {
+      text-transform: uppercase;
+      @include font-nun(24px, #ffffff, 700, 32px);
+      }
+  }
+  .footer__menu {
+    @include respond-to(wide-screens){
+      margin: 2em;
+    }
+  }
+    .footer__menu__list {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      list-style: none;
+      text-align: center;
+      @include respond-to(wide-screens) {
+        flex-flow: row wrap;
+        margin: 1em;
+      }
+      .footer__menu__item {
+        width: 100%;
+        text-decoration: none;
+        @include font-nun(18px, white, 700, 24px);
+        @include respond-to(medium-screens) {
+          @include font-nun(22px, white, 700, 30px);
+        }
+        @include respond-to(wide-screens){
+          margin: 2em;
+        }
+
+      .footer__hr{
+        background: rgba(149, 152, 154, 0.46);
+        border: 1px rgba(149, 152, 154, 0.46) solid ;
+        @include respond-to(wide-screens){
+         display: none;
+        }
+
+
+      }
+    }
+  }
+}
+/*END of SECTION FOOTER*/
+

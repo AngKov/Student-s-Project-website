@@ -1,0 +1,37 @@
+{
+  "name": "Student-Project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "node-sass": "^4.5.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "copy-webpack-plugin": "^4.2.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "image-loader": "0.0.1",
+    "node-sass": "^4.6.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "uglify-loader": "^2.0.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  },
+  "scripts": {
+    "build": "webpack --optimize-minimize",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://Anzhela_Kovalchuk@git.epam.com/Anzhela_Kovalchuk/Student-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
